@@ -1,0 +1,12 @@
+{%extends "html/layout.html"%}
+{%block body%}
+<h1>Add Vendor</h1>
+<form action="{%url 'main:vendor'%}" method="POST">
+{%csrf_token%}
+
+{{vendorform}}
+<button type="submit" name="submit">Submit</button>
+</form>
+{% include 'html/includes/customerForm.html' with form=customerform %}
+
+{%endblock%}
