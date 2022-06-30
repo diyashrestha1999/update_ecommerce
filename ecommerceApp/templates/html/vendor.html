@@ -1,0 +1,8 @@
+{%extends "html/layout.html"%}
+{%block body%}
+<ul>Name:- {{vendor.name}}</ul>
+<ul>Number:- {{vendor.number}}</ul>
+<ul>Username:- {{vendor.username}}</ul>
+<ul>Password:- {{vendor.password}}</ul>
+<ul><button><a href="{%url 'main:update-vendor' vendor.id%}">Update</a></button></ul>
+{%endblock%}

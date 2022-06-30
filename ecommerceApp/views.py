@@ -1,9 +1,10 @@
 from cProfile import label
+from unicodedata import category
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django import forms
-from .models import Customer, Vendor,UserType
+from .models import Category, Customer, OrderDetail, Product, Vendor,UserType, Shop, Order
 # Create your views here.
 class VendorForm(forms.Form):
     vendor_name=forms.CharField(label='Vendor Name:',max_length=50)
@@ -18,42 +19,153 @@ class CustomerForm(forms.Form):
     customer_email=forms.EmailField(label="Email")
     customer_password = forms.CharField(label="Password",widget=forms.PasswordInput)    
 
+def index(request):
+    return render(request,'html/index.html')
 
-def vendor(request):
+
+def vendor(request,id):
+    vendor=Vendor.objects.get(pk=id)
+
+    return render(request,"html/vendor.html",{"vendor":vendor})
+
+def updateVendor(request,id):
     if request.method=="POST":
-        values=VendorForm(request.POST)
-        if values.is_valid():
-            clean_name=values.cleaned_data["vendor_name"]
-            clean_number=values.cleaned_data["vendor_number"]
-            clean_email=values.cleaned_data["vendor_email"]
-            clean_password=values.cleaned_data["vendor_password"]
-
-
-            Vendor.objects.create(
-            name=clean_name,number=clean_number, email=clean_email, password=clean_password)
+        value=VendorForm(request.POST)
+        if value.is_valid():
+            new_name=value.cleaned_data["vendor_name"]
+            new_number=value.cleaned_data["vendor_number"]
+            new_email=value.cleaned_data["vendor_email"]
+            new_password=value.cleaned_data["vendor_password"]
             
-            return HttpResponseRedirect(reverse("main:displayVendor"))
+  
 
-    return render(request,"html/index.html",{"vendorform":VendorForm(), "customerform":CustomerForm()})
+            
+            
+            vendor=Vendor.objects.get(pk=id)
+            
+            vendor.name=new_name
+            vendor.number=new_number
+            vendor.password=new_password
+            vendor.email=new_email
+            return HttpResponseRedirect(reverse("main:vendor-profile"))
 
-def customer(request):
-    if request.method=="POST":
-        values=CustomerForm(request.POST)
-        if values.is_valid():
-            new_name=values.cleaned_data["customer_name"]
-            new_username=values.cleaned_data["customer_name"]
-            new_email=values.cleaned_data["customer_email"]
-            new_password=values.cleaned_data["customer_password"]
 
-            Customer.objects.create(name=new_name,username=new_username,email=new_email,password=new_password)
-            return HttpResponseRedirect(reverse("main:displayCustomer"))
+    return render(request,"html/updateVendor.html",{"form":VendorForm()})
+ 
     
-    return render(request,'html/includes/customerForm.html',{"form":CustomerForm()})
-
-
 def displayVendor(request):
     lists=Vendor.objects.all()
     return render(request, "html/list.html",{"list":lists})
 
+def product(request):
+    products=Product.objects.all()
+    return render(request,"html/product.html",{"products":products})
+
 # def layout(request):
 #     return render(request, 'html/layout.html')
+FRUIT_CHOICES= [
+    ('orange', 'Oranges'),
+    ('cantaloupe', 'Cantaloupes'),
+    ('mango', 'Mangoes'),
+    ('honeydew', 'Honeydews'),
+    ]
+
+class AddProduct(forms.Form):
+    name=forms.CharField(max_length=50)
+    description=forms.CharField(max_length=100)
+    shop=forms.MultipleChoiceField(
+        initial='0',
+        required=True,
+        widget=forms.SelectMultiple(),
+        choices=[(shop.id , shop.name) for shop in Shop.objects.all()]
+        
+    )
+    category=forms.CharField(
+        required=False,
+        widget=forms.Select(choices=[(category.id, category.name) for category in Category.objects.all()])
+        
+    )
+def addProduct(request):
+    if request.method=="POST":
+        value=AddProduct(request.POST)
+        if value.is_valid():
+            new_name=value.cleaned_data["name"]
+            new_description=value.cleaned_data["description"]
+            new_shop=value.cleaned_data["shop"]
+            new_category=value.cleaned_data["category"]
+            
+            
+            product = Product.objects.create(
+                name=new_name,
+                description=new_description,
+                category_id=new_category
+            )
+            qs=list(Shop.objects.filter(id__in=new_shop))
+
+            product.shop.add(*qs)
+            return HttpResponseRedirect(reverse("main:product"))
+ 
+    return render(request,"html/addProduct.html",{"form":AddProduct()})
+
+
+def deleteProduct(request, id):
+    Product.objects.get(pk=id).delete()
+    
+    return HttpResponseRedirect(reverse('main:product'))
+
+def updateProduct(request, id):
+    if request.method=="POST":
+        value=AddProduct(request.POST)
+        if value.is_valid():
+            new_name=value.cleaned_data["name"]
+            new_description=value.cleaned_data["description"]
+            new_shop=value.cleaned_data["shop"]
+            new_category=value.cleaned_data["category"]
+            
+            qs=list(Shop.objects.filter(id__in=new_shop))
+
+           
+            
+            product=Product.objects.get(pk=id)
+          
+            product.name=new_name
+            product.description=new_description
+            product.shop.add(*qs)
+            product.category_id=int(new_category)
+            product.save()
+            return HttpResponseRedirect(reverse("main:product"))
+ 
+
+    return render(request,"html/updateProduct.html",{"form":AddProduct()})
+
+def order(request):
+    orders=Order.objects.all()
+    return render(request,'html/orderlist.html',{"orders":orders})
+
+def orderDetail(request,id):
+    order=Order.objects.get(pk=id)
+    return render(request,'html/orderDetail.html',{"order":order})
+
+
+# def updateProduct(request):
+#     if request.method=="POST":
+#         value=AddProduct(request.POST)
+#         if value.is_valid():
+#             new_name=value.cleaned_data["name"]
+#             new_description=value.cleaned_data["description"]
+#             new_shop=value.cleaned_data["shop"]
+#             new_category=value.cleaned_data["category"]
+            
+            
+#             product = Product.objects.create(
+#                 name=new_name,
+#                 description=new_description,
+#                 category_id=new_category
+#             )
+#             qs=list(Shop.objects.filter(id__in=new_shop))
+
+#             product.shop.add(*qs)
+#             return HttpResponseRedirect(reverse("main:product"))
+ 
+#     return render(request,"html/updateProduct.html",{"form":AddProduct()})
+

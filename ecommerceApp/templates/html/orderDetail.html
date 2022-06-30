@@ -1,0 +1,9 @@
+{%extends "html/layout.html"%}
+{%block body%}
+<h1>Order Detail</h1>
+
+    <ul>Order Id:- {{order.id}}</ul>
+    <ul>Ordered Date:- {{order.order_date}}</ul>
+    <ul>Deliver Date:- {{order.deliver_date}}</ul>
+    <ul>Ordered By:- {{order.customer.name}}</ul>
+{%endblock%}

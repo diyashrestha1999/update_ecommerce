@@ -1,0 +1,17 @@
+{%extends "html/layout.html"%}
+{%block body%}
+   
+        {%for product in products%}
+            <ul>Product: {{product.name}}, 
+                Description: {{product.description}}, 
+                Category: {{product.category.name}},
+                Shop: {% for shop in product.shop.all %}{{ shop.name }}{% endfor %}</ul>
+                <button >
+                <a href="{%url 'main:delete-product' product.id %}">Delete</a>    
+                </button>
+                <button>
+                <a href="{%url 'main:update-product' product.id %}">Update</a>
+                </button>
+        {%endfor%}
+  
+{% endblock %} 
