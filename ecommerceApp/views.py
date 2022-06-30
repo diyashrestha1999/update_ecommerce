@@ -36,20 +36,15 @@ def updateVendor(request,id):
             new_number=value.cleaned_data["vendor_number"]
             new_email=value.cleaned_data["vendor_email"]
             new_password=value.cleaned_data["vendor_password"]
-            
-  
-
-            
-            
+     
             vendor=Vendor.objects.get(pk=id)
             
             vendor.name=new_name
             vendor.number=new_number
             vendor.password=new_password
             vendor.email=new_email
-            return HttpResponseRedirect(reverse("main:vendor-profile"))
-
-
+            vendor.save()
+            return HttpResponseRedirect(reverse("main:vendor-profile", args=[id]))
     return render(request,"html/updateVendor.html",{"form":VendorForm()})
  
     
@@ -145,6 +140,15 @@ def order(request):
 def orderDetail(request,id):
     order=Order.objects.get(pk=id)
     return render(request,'html/orderDetail.html',{"order":order})
+
+def productDetail(request,id):
+    product=Product.objects.get(pk=id)
+    return render(request,'html/productDetail.html',{"product":product})
+
+def shop(request,id):
+    shops=Shop.objects.get(pk=id)
+    products=Shop.objects.filter(product__pk=id)
+    return render(request,'html/shoplist.html',{"shops":shops, "products":products})
 
 
 # def updateProduct(request):

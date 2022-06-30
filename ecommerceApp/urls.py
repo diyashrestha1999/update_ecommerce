@@ -14,6 +14,8 @@ urlpatterns = [
     path('updateproduct/<int:id>',views.updateProduct,name="update-product"),
     path('orderlist/',views.order,name="order"),
     path('orderdetail/<int:id>',views.orderDetail,name="order-detail"),
+    path('productdetail/<int:id>',views.productDetail,name="product-detail"),
+    path('shop/<int:id>',views.shop,name="shop"),
     # path('updateproduct/',views.updateProduct, name="updateproduct")
    
     

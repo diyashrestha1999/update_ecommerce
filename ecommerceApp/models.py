@@ -18,7 +18,7 @@ class Shop(models.Model):
     name=models.CharField(max_length=50)
     owner=models.ForeignKey(Vendor, on_delete=models.CASCADE)
     def __str__(self):
-        return f"Shop Name: {self.name}, Owner: {self.owner}"
+        return f"{self.name}, Owner: {self.owner} , Id: {self.id}"
 
 class Category(models.Model):
     name=models.CharField(max_length=50)
@@ -29,6 +29,9 @@ class Category(models.Model):
 class Product(models.Model):
     name=models.CharField(max_length=50)
     description=models.CharField(max_length=1000)
+    category=models.ForeignKey(Category,on_delete=models.CASCADE)
+    shop=models.ManyToManyField(Shop)
+    
     @property
     def shop_detail(self):
         return list(self.shop.values_list("name","owner__name"))

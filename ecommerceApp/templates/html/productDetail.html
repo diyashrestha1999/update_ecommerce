@@ -1,0 +1,15 @@
+{%extends "html/layout.html"%}
+{%block body%}
+<h1>Product Detail</h1>
+
+    <ul>Product Id:- {{product.id}}</ul>
+    <ul>Product Name:- {{product.name}}</ul>
+    <ul>Product Description:- {{product.description}}</ul>
+    <ul>Category:- {{product.category.name}}</ul>
+    <button >
+    <a href="{%url 'main:delete-product' product.id %}">Delete</a>    
+    </button>
+    <button>
+    <a href="{%url 'main:update-product' product.id %}">Update</a>
+    </button>
+{%endblock%}
