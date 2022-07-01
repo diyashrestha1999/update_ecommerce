@@ -12,6 +12,9 @@
                 <button>
                 <a href="{%url 'main:product-detail' product.id %}">View Detail</a>
                 </button>
+                <button >
+                        <a href="{%url 'main:delete-product' product.id %}">Delete</a>    
+                </button>
         {%endfor%}
   
 {% endblock %} 

@@ -1,6 +1,3 @@
-from cProfile import label
-import email
-from unicodedata import category
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render

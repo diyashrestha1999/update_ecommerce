@@ -3,7 +3,6 @@ from . import views
 
 app_name="main"
 urlpatterns = [
-    path('',views.index,name="index"),
     path('vendorprofile/<int:id>',views.vendor,name="vendor-profile"),
     path('vendorlist/',views.displayVendor,name="displayVendor"),
     path('updatevendor/<int:id>',views.updateVendor,name="update-vendor"),
@@ -29,7 +28,5 @@ urlpatterns = [
     path('addshop/',views.addShop,name="add-shop"),
     path('updateshop/<int:id>',views.updateShop,name="update-shop"),
     path('deleteshop/<int:id>',views.deleteShop,name="delete-shop"),
-
-   
-    
+    path('',views.index,name="index") 
 ]
