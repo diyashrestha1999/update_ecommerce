@@ -1,7 +1,13 @@
 {%extends "html/layout.html"%}
 {%block body%}
-<h1>Shop List</h1>
-    <ul>Shop Name:- {{shops.name}}</ul>
-    <ul>Shop Owner:- {{shops.owner.name}}</ul>
-    <ul>Products:-{{products}}</ul>
+<h1>Shop</h1>
+<button><a href="{%url 'main:update-shop' shop.id%}">Update</a></button>
+<button><a href="{%url 'main:delete-shop' shop.id%}">Delete</a></button>
+    <ul>Shop name:- {{shop.name}}</ul>
+    <ul>Shop owner:- {{shop.owner.name}}</ul>
+    <h1>Products</h1>
+    {%for name in products%}
+      <ul>-{{name.name}}</ul>
+    {%endfor%}
+
 {%endblock%}

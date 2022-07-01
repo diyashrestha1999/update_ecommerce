@@ -1,0 +1,10 @@
+{%extends "html/layout.html"%}
+{%block body%}
+<h1>Vendor List</h1>
+<button> <a href="{%url 'main:add-vendor'%}"><h1>Add Vendor</h1></a></button>
+<button><a href="{%url 'main:index'%}">Go back to Index</a></button>
+{%for vendor in lists%}
+    <ul>ID-:{{vendor.id}} Vendor Name:- {{vendor.name}}</ul>
+    <button><a href="{%url 'main:vendor-profile' vendor.id%}">View Detail</a></button>
+{%endfor%}
+{%endblock%}

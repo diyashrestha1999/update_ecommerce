@@ -29,15 +29,15 @@ class Category(models.Model):
 class Product(models.Model):
     name=models.CharField(max_length=50)
     description=models.CharField(max_length=1000)
-    category=models.ForeignKey(Category,on_delete=models.CASCADE)
-    shop=models.ManyToManyField(Shop)
+    category=models.ForeignKey(Category,on_delete=models.CASCADE, related_name="category_name")
+    shop=models.ManyToManyField(Shop, related_name="shop_name")
     
     @property
     def shop_detail(self):
         return list(self.shop.values_list("name","owner__name"))
 
     def __str__(self):
-        return f"Product Name: {self.name}, {self.shop}"
+        return f"Product Name: {self.name}, shop: {self.shop}, category:{self.category}, id={self.id}"
     
 class Customer(models.Model):
     name=models.CharField(max_length=100)

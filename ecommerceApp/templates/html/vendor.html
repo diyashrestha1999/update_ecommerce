@@ -1,8 +1,15 @@
 {%extends "html/layout.html"%}
 {%block body%}
+<h1>Vendor Detail</h1>
+<ul>ID:- {{vendor.id}}</ul>
 <ul>Name:- {{vendor.name}}</ul>
 <ul>Number:- {{vendor.number}}</ul>
 <ul>Username:- {{vendor.username}}</ul>
 <ul>Password:- {{vendor.password}}</ul>
-<ul><button><a href="{%url 'main:update-vendor' vendor.id%}">Update</a></button></ul>
+<ul>
+    <button><a href="{%url 'main:update-vendor' vendor.id%}">Update</a></button>
+    <button><a href="{%url 'main:delete-vendor' vendor.id%}">Delete</a></button>
+    <button><a href="{%url 'main:displayVendor'%}">Go back to vendor list</a></button>
+</ul>
+
 {%endblock%}

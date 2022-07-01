@@ -1,0 +1,12 @@
+{%extends "html/layout.html"%}
+{%block body%}
+<h1>Category Details </h1>
+
+   <ul> Category ID:- {{category.id}}</ul>
+   <ul> Category Name:- {{category.name}}</ul>
+<h1>Products in this category</h1>
+   {%for product in products%}
+    <ul>-{{product.name}}</ul>
+   {%endfor%}
+
+{%endblock%}

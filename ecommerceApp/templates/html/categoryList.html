@@ -1,0 +1,11 @@
+{%extends "html/layout.html"%}
+{%block body%}
+<h1>Types of Categories </h1>
+{%for category in categories%}
+    <ul>-{{category.name}} <button>
+        <a href="{%url 'main:category-detail' category.id %}">View Detail</a>
+    </button></ul>
+   
+
+{%endfor%}
+{%endblock%}

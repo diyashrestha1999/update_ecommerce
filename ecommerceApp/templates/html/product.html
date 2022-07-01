@@ -1,6 +1,7 @@
 {%extends "html/layout.html"%}
 {%block body%}
-<button><a href="{%url 'main:add-product'%}">Add Product</a></button>
+<button><a href="{%url 'main:add-product'%}"><h3>Add Product</h3></a></button>
+<button><a href="{%url 'main:index'%}">Go back to Index</a></button>
         {%for product in products%}
    
             <ul>Product: {{product.name}}, 

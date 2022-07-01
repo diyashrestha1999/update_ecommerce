@@ -1,0 +1,14 @@
+{%extends "html/layout.html"%}
+{%block body%}
+<h1>Customer Detail</h1>
+<ul>ID:- {{customer.id}}</ul>
+<ul>Name:- {{customer.name}}</ul>
+<ul>Username:- {{customer.username}}</ul>
+<ul>Password:- {{customer.password}}</ul>
+<ul>
+    <button><a href="{%url 'main:update-customer' customer.id%}">Update</a></button>
+    <button><a href="{%url 'main:delete-customer' customer.id%}">Delete</a></button>
+    <button><a href="{%url 'main:displayCustomer'%}">Go back to customer list</a></button>
+</ul>
+
+{%endblock%}
