@@ -1,7 +1,7 @@
 {%extends "html/layout.html"%}
 {%block body%}
 <h1>Order List</h1>
-<button><a href="{%url 'main:index'%}">Go back to Index</a></button>
+
 {%for order in orders%}
     <ul>{{order}}</ul>
     <button><a href="{%url 'main:order-detail' order.id%}">View Detail</a></button>

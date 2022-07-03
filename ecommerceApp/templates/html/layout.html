@@ -7,15 +7,31 @@
     </title>
 
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet"  href="{% static 'css/stylesheet.css' %}" />
 
 </head>
 
 <body>
-    <h1>This Is Layout Page Extension</h1>
-   <div class="nav">css working!!</div>
+ 
+    <div>
+        <div class="sidebar">
+            <a class="active" href="{%url 'main:product'%}">Products</a>
+            <a href="{%url 'main:order'%}">Order List</a>
+            <a href="{%url 'main:category'%}">Categories List</a>
+            <a href="{%url 'main:displayVendor'%}">Vendor List</a>
+            <a href="{%url 'main:displayCustomer'%}">Customer List</a>
+            <a href="{%url 'main:shoplist'%}">Shops</a>
+          </div>
+    </div>
+    
+    
+
+  
+  <div class="content">
     {%block body%}
     {% endblock %}
+  </div>
+
 </body>
 
 </html>

@@ -1,20 +1,31 @@
 {%extends "html/layout.html"%}
 {%block body%}
-<button><a href="{%url 'main:add-product'%}"><h3>Add Product</h3></a></button>
-<button><a href="{%url 'main:index'%}">Go back to Index</a></button>
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/products.css' %}" />
+<button class="button"><a class="button" href="{%url 'main:add-product'%}">
+        <h3>Add Product</h3>
+</a></button>
+
+<div class="main">
         {%for product in products%}
-   
-            <ul>Product: {{product.name}}, 
-                Description: {{product.description}}, 
-                Category: {{product.category.name}},
-                Shop: {% for shop in product.shop.all %}{{ shop.name }}{% endfor %}</ul>
-             
-                <button>
-                <a href="{%url 'main:product-detail' product.id %}">View Detail</a>
-                </button>
-                <button >
-                        <a href="{%url 'main:delete-product' product.id %}">Delete</a>    
-                </button>
+        <div class="card">
+
+                <div class="container">
+                        <img src="../icon/product.jpg" alt="Avatar" style="width:100%">
+                        <ul>Product: {{product.name}},
+                                Description: {{product.description}},
+                                Category: {{product.category.name}},
+                                Shop: {% for shop in product.shop.all %}{{ shop.name }}{% endfor %}</ul>
+
+                        <button class="button-small">
+                                <a class="button-small" href="{%url 'main:product-detail' product.id %}">View Detail</a>
+                        </button>
+                        <button class="button-small">
+                                <a class="button-small" href="{%url 'main:delete-product' product.id %}">Delete</a>
+                        </button>
+                </div>
+              
+        </div>
         {%endfor%}
-  
-{% endblock %} 
+{% endblock %}

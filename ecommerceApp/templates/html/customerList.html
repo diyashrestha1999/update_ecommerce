@@ -2,7 +2,7 @@
 {%block body%}
 <h1>Customer List</h1>
 <button> <a href="{%url 'main:add-customer'%}"><h1>Add Customer</h1></a></button>
-<button><a href="{%url 'main:index'%}">Go back to Index</a></button>
+
 {%for customer in customers%}
     <ul>ID-:{{customer.id}} Customer Name:- {{customer.name}}
   
