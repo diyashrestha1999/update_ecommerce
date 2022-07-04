@@ -1,10 +1,15 @@
 {%extends "html/layout.html"%}
 {%block body%}
-
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/productForm.css' %}" />
+<h1 class=""> Add Customer</h1>
     <form  method="POST">
         {%csrf_token%}
-        {{form}}
-    <button type="submit">Submit</button>
+        <ul>Name: {{form.customer_name}}</ul>
+        <ul>Username: {{form.customer_username}}</ul>
+        <ul>Email: {{form.customer_email}}</ul>
+        <ul>Password: {{form.customer_password}}</ul>
+   <ul> <button type="submit">Submit</button></ul>
     </form>
 
 {% endblock %} 

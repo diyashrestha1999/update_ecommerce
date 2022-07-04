@@ -1,10 +1,18 @@
 {%extends "html/layout.html"%}
 {%block body%}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/productForm.css' %}" />
+<ul><h1 style="color: #212529;">Add Vendor Form</h1></ul>
 
     <form  method="POST">
         {%csrf_token%}
-        {{form}}
-    <button type="submit">Submit</button>
+        <ul>Name:{{form.vendor_name}}</ul>
+        <ul>Username:{{form.vendor_username}}</ul>
+        <ul>Number:{{form.vendor_number}}</ul>
+       
+        <ul>Email:{{form.vendor_email}}</ul>
+        <ul> Password:{{form.vendor_password}}</ul>
+        <ul><button type="submit">Submit</button></ul>
     </form>
 
 {% endblock %} 

@@ -1,9 +1,19 @@
 {%extends "html/layout.html"%}
 {%block body%}
-<h1>All Shops List</h1>
-<button><a href="{%url 'main:add-shop'%}"><h1>Add Shop</h1></a></button>
-<button><a href="{%url 'main:index'%}">Go back to Index</a></button>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/vendor.css' %}" />
+
+<h1 style="color: #212529;">All Shops List</h1>
+
+<a id="adda" class="button" href="{%url 'main:add-shop'%}"> + </a>
+
 {%for shop in shops%}
-<ul>-{{shop.name}}<button><a href="{%url 'main:shop' shop.id%}">View Details</a></button></ul>
+
+<div class="card">
+<ul style="flex-grow: 1;">{{shop.name}}</ul>
+<a id="addb" class="button1"  href="{%url 'main:shop' shop.id%}">View Details</a></ul>
+</div>
 {%endfor%}
+
+
 {%endblock%}

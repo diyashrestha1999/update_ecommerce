@@ -1,11 +1,21 @@
 {%extends "html/layout.html"%}
 {%block body%}
-<h1>Types of Categories </h1>
-{%for category in categories%}
-    <ul>-{{category.name}} <button>
-        <a href="{%url 'main:category-detail' category.id %}">View Detail</a>
-    </button></ul>
-   
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/categorylist.css' %}" />
+<div>
+    <h1 class="title">Types of Categories </h1>
+        <div class="main">
+            {%for category in categories%}
+            <div class="card">
+                <ul>{{category.name}} 
+                    <button class="button">
+                        <a  class="button" href="{%url 'main:category-detail' category.id %}">View Detail</a>
+                    </button>
+                </ul>
 
-{%endfor%}
+            </div>
+            {%endfor%}
+        </div>
+
+</div>
 {%endblock%}

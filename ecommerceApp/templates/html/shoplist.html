@@ -1,11 +1,16 @@
 {%extends "html/layout.html"%}
 {%block body%}
-<h1>Shop</h1>
-<button><a href="{%url 'main:update-shop' shop.id%}">Update</a></button>
-<button><a href="{%url 'main:delete-shop' shop.id%}">Delete</a></button>
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/orderdetail.css' %}" />
+
+<h1 style="color: #212529;"> {{shop.name}} Shop</h1>
+
+<a class="btn" href="{%url 'main:update-shop' shop.id%}">Update</a>
+<a class="btn"href="{%url 'main:delete-shop' shop.id%}">Delete</a>
     <ul>Shop name:- {{shop.name}}</ul>
     <ul>Shop owner:- {{shop.owner.name}}</ul>
-    <h1>Products</h1>
+    <h1 style="color: #212529;">Products</h1>
     {%for name in products%}
       <ul>-{{name.name}}</ul>
     {%endfor%}

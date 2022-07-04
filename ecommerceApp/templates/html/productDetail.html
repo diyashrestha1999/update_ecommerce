@@ -1,15 +1,20 @@
 {%extends "html/layout.html"%}
 {%block body%}
-<h1>Product Detail</h1>
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/orderdetail.css' %}" />
+<div class="main">
+<h1 class="title">Product Detail</h1>
 
     <ul>Product Id:- {{product.id}}</ul>
     <ul>Product Name:- {{product.name}}</ul>
     <ul>Product Description:- {{product.description}}</ul>
     <ul>Category:- {{product.category.name}}</ul>
-    <button >
-    <a href="{%url 'main:delete-product' product.id %}">Delete</a>    
-    </button>
-    <button>
-    <a href="{%url 'main:update-product' product.id %}">Update</a>
-    </button>
+    
+  <ul> <a class="btn" href="{%url 'main:delete-product' product.id %}">Delete</a>    
+  
+   
+    <a class="btn" href="{%url 'main:update-product' product.id %}">Update</a></ul> 
+</div>
+   
 {%endblock%}

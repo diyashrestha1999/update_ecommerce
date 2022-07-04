@@ -1,15 +1,19 @@
 {%extends "html/layout.html"%}
 {%block body%}
-<h1>Vendor Detail</h1>
-<ul>ID:- {{vendor.id}}</ul>
-<ul>Name:- {{vendor.name}}</ul>
-<ul>Number:- {{vendor.number}}</ul>
-<ul>Username:- {{vendor.username}}</ul>
-<ul>Password:- {{vendor.password}}</ul>
-<ul>
-    <button><a href="{%url 'main:update-vendor' vendor.id%}">Update</a></button>
-    <button><a href="{%url 'main:delete-vendor' vendor.id%}">Delete</a></button>
-   
-</ul>
 
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/orderdetail.css' %}" />
+<div class="main">
+    <h1 class="title">Vendor Detail</h1>
+    <ul>ID:- {{vendor.id}}</ul>
+    <ul>Name:- {{vendor.name}}</ul>
+    <ul>Number:- {{vendor.number}}</ul>
+    <ul>Username:- {{vendor.username}}</ul>
+    <ul>Password:- {{vendor.password}}</ul>
+    <ul>
+        <a class="btn" href="{%url 'main:update-vendor' vendor.id%}">Update</a>
+        <a class="btn" href="{%url 'main:delete-vendor' vendor.id%}">Delete</a>
+
+    </ul>
+</div>
 {%endblock%}

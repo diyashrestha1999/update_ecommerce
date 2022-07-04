@@ -1,10 +1,19 @@
 {%extends "html/layout.html"%}
 {%block body%}
-<h1>Vendor List</h1>
-<button> <a href="{%url 'main:add-vendor'%}"><h1>Add Vendor</h1></a></button>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/vendor.css' %}" />
+<h1 class="title" style="color: #212529;">Vendor List</h1>
+
+
+
+<a id="adda" class="button" href="{%url 'main:add-vendor'%}"> + </a>
+
+
 <!-- <button><a href="{%url 'main:index'%}">Go back to Index</a></button> -->
 {%for vendor in lists%}
-    <ul>ID-:{{vendor.id}} Vendor Name:- {{vendor.name}}</ul>
-    <button><a href="{%url 'main:vendor-profile' vendor.id%}">View Detail</a></button>
+<div class="card">
+    <ul style="flex-grow: 1;">ID-:{{vendor.id}} Vendor Name:- {{vendor.name}}</ul>
+    <a id="addb" class="button1" href="{%url 'main:vendor-profile' vendor.id%}">View Detail</a>
+</div>
 {%endfor%}
-{%endblock%}
+{%endblock%}d

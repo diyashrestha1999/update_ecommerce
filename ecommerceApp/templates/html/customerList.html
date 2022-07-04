@@ -1,13 +1,18 @@
 {%extends "html/layout.html"%}
 {%block body%}
-<h1>Customer List</h1>
-<button> <a href="{%url 'main:add-customer'%}"><h1>Add Customer</h1></a></button>
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/vendor.css' %}" />
+<h1 style="color: #212529;">Customer Lists</h1>
+
+<a id="adda" class="button" href="{%url 'main:add-customer'%}"> + </a>
 
 {%for customer in customers%}
-    <ul>ID-:{{customer.id}} Customer Name:- {{customer.name}}
+<div class="card">
+    <ul style="flex-grow: 1;">ID-:{{customer.id}} Customer Name:- {{customer.name}}
   
     </ul>
-    <button><a href="{%url 'main:customer-profile' customer.id%}">View Detail</a></button>
-
+    <a id="addb" class="button1" href="{%url 'main:customer-profile' customer.id%}">View Detail</a>
+</div>
 {%endfor%}
 {%endblock%}

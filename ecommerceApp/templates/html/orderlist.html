@@ -1,9 +1,15 @@
 {%extends "html/layout.html"%}
 {%block body%}
-<h1>Order List</h1>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/orderlist.css' %}" />
+<h1 class="title">Order List</h1>
+<div>
+    {%for order in orders%}
+    <div class="card">
+        <ul style="flex-grow: 1;"> ID:{{order.id}}---- Order Date: {{order.order_date}}</ul>
+        <a id="adda" class="button" href="{%url 'main:order-detail' order.id%}">View Detail</a>
+    </div>
 
-{%for order in orders%}
-    <ul>{{order}}</ul>
-    <button><a href="{%url 'main:order-detail' order.id%}">View Detail</a></button>
-{%endfor%}
+    {%endfor%}
+</div>
 {%endblock%}
