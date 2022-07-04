@@ -28,5 +28,7 @@ urlpatterns = [
     path('addshop/',views.addShop,name="add-shop"),
     path('updateshop/<int:id>',views.updateShop,name="update-shop"),
     path('deleteshop/<int:id>',views.deleteShop,name="delete-shop"),
+    path('deletecategory/<int:id>',views.deleteCategory,name="delete-category"),
+    path('dashboard-view/',views.viewDashboard,name="viewDashboard"),
     path('',views.product,name="index") 
 ]

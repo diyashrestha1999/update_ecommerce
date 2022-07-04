@@ -6,7 +6,9 @@
 
    <ul> Category ID:- {{category.id}}</ul>
    <ul> Category Name:- {{category.name}}</ul>
+   <ul> <a class="btn" href="{%url 'main:delete-category' category.id%}" >Delete</a></ul>
 <h1 class="title">Products in this category</h1>
+
    {%for product in products%}
     <ul>-{{product.name}}</ul>
    {%endfor%}

@@ -203,6 +203,10 @@ def deleteCustomer(request,id):
     Customer.objects.get(pk=id).delete()
     return HttpResponseRedirect(reverse("main:displayCustomer"))
 
+def deleteCategory(request, id):
+    Category.objects.get(pk=id).delete()
+    return HttpResponseRedirect(reverse("main:category"))
+
 def addVendor(request):
     if request.method=="POST":
         value=VendorForm(request.POST)
@@ -298,3 +302,6 @@ def deleteShop(request, id):
     Shop.objects.get(pk=id).delete()
 
     return HttpResponseRedirect(reverse('main:shoplist'))
+
+def viewDashboard(request):
+    return render(request, "html/viewdashboard.html")

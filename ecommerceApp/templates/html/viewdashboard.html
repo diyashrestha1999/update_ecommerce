@@ -1,0 +1,32 @@
+{%extends "html/layout.html"%}
+{%block body%}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}" />
+<div>
+    <div class="div1">
+        <div class="div4">
+
+
+        </div>
+        <div class="div5">
+
+        </div>
+    </div>
+    <div class="div2">
+      
+        {% include "html/include/orderlist.html" %}
+     
+    
+
+    </div>
+    <div class="div3">
+        <div class="div6">
+
+        </div>
+        <div class="div7">
+
+        </div>
+
+    </div>
+</div>
+{%endblock%}

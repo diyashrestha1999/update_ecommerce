@@ -37,3 +37,17 @@ div {
   .button:hover{
     background-color: #45a049;
   }
+
+.btn{
+  background-color:#4CAF50 ;
+  text-decoration: none ;
+  color: white;
+  padding: 3px;
+  border-radius: 5px;
+
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+
+}
+.btn:hover{
+  background-color: #45a049;
+}
