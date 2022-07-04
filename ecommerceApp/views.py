@@ -304,4 +304,7 @@ def deleteShop(request, id):
     return HttpResponseRedirect(reverse('main:shoplist'))
 
 def viewDashboard(request):
-    return render(request, "html/viewdashboard.html")
+    context = {
+        "orders": Order.objects.all()
+    }
+    return render(request, "html/viewdashboard.html", context)

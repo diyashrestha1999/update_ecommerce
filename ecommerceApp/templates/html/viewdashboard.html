@@ -12,12 +12,15 @@
 
         </div>
     </div>
-    <div class="div2">
-      
-        {% include "html/include/orderlist.html" %}
-     
     
-
+    <div class="div2">
+        {%for order in orders%}
+        <div class="card">
+            <ul style="flex-grow: 1;"> ID:{{order.id}}---- Order Date: {{order.order_date}}</ul>
+            <a id="adda" class="button" href="{%url 'main:order-detail' order.id%}">View Detail</a>
+        </div>
+    
+        {%endfor%}
     </div>
     <div class="div3">
         <div class="div6">
