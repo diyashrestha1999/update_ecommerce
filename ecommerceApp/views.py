@@ -305,6 +305,8 @@ def deleteShop(request, id):
 
 def viewDashboard(request):
     context = {
-        "orders": Order.objects.all()
+        "orders": Order.objects.all(),
+        "products":Product.objects.all(),
+        "categories":Category.objects.all()
     }
     return render(request, "html/viewdashboard.html", context)

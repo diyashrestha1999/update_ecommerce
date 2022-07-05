@@ -14,19 +14,21 @@
                 <div class="card">
 
                         <div class="container">
-                                <img src="/icon/product.jpg" alt="Avatar" style="width:100%; ">
+                            
+                                <img class="img" src="{% static 'product.jpg' %}" alt="My image" width="100" height="85">
+
                                 <div class="name">
                                         <ul class="ul">Name: {{product.name}}
                                 </div>
+
                                 <div class="buttongrp">
-                                        <button class="button-small">
+                                       
                                                 <a class="button-small"
                                                         href="{%url 'main:product-detail' product.id %}">View Detail</a>
-                                        </button>
-                                        <button class="button-small">
+                                  
                                                 <a class="button-small"
                                                         href="{%url 'main:delete-product' product.id %}">Delete</a>
-                                        </button>
+                                  
                                 </div>
                         </div>
 

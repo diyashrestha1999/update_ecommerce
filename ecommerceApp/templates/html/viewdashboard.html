@@ -8,28 +8,90 @@
 
 
         </div>
-        <div class="div5">
 
-        </div>
     </div>
-    
+
     <div class="div2">
-        {%for order in orders%}
+        <!-- <div class="div8"> -->
+        <!-- {%for order in orders%}
         <div class="card">
             <ul style="flex-grow: 1;"> ID:{{order.id}}---- Order Date: {{order.order_date}}</ul>
             <a id="adda" class="button" href="{%url 'main:order-detail' order.id%}">View Detail</a>
         </div>
     
-        {%endfor%}
-    </div>
-    <div class="div3">
-        <div class="div6">
+        {%endfor%} -->
+        <!-- </div> -->
+
+        <div class="div3">
+            <div class="order">
+                <div class="contain">
+                    <h5>Orders</h5>
+                    {%for order in orders%}
+                    <ul>Order Id: {{order.id}}</ul>
+                    {%endfor%}
+                </div>
+                <div class="see">
+                    <div class="last">
+                        <a class="seemore" id="see"href="{%url 'main:order' %}">See More</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category">
+                <div class="contain">
+                    <h5>Category</h5>
+                    {%for category in categories%}
+                    <ul>- {{category.name}}</ul>
+                    {%endfor%}
+                </div>
+                <div class="see">
+                    <div class="last">
+                        <a class="seemore" id="see"href="{%url 'main:category' %}">See More</a>
+                    </div>
+                </div>
+
+            </div>
+
 
         </div>
-        <div class="div7">
+
+        <div class="div5">
+
+            <div class="product">
+                {%for product in products%}
+
+
+                <div class="container">
+
+                    <img class="img" src="{% static 'product.jpg' %}" alt="My image" width="100" height="85">
+
+                    <div class="name">
+
+                        <ul>Name: {{product.name}}</ul>
+
+                        <div class="buttongrp">
+
+                            <a class="button-small" href="{%url 'main:product-detail' product.id %}">View Detail</a>
+
+                            <!-- <a class="button-small" href="{%url 'main:delete-product' product.id %}">Delete</a> -->
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+                {%endfor%}
+            </div>
+            <div class="see">
+                <div class="last">
+                    <a class="seemore" href="{%url 'main:product' %}">See More</a>
+                </div>
+            </div>
 
         </div>
-
     </div>
+
 </div>
 {%endblock%}
