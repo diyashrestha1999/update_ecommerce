@@ -4,9 +4,8 @@
 <link rel="stylesheet" href="{% static 'css/dashboard.css' %}" />
 <div>
     <div class="div1">
-        <div class="div4">
-
-
+        <div class="div4" >
+            <h1 style="color: white; margin:1.1em 0 0 5.1em; font-size: 60px;letter-spacing:0.5em; ">DASHBOARD</h1>
         </div>
 
     </div>
@@ -23,33 +22,25 @@
         <!-- </div> -->
 
         <div class="div3">
-            <div class="order">
-                <div class="contain">
-                    <h5>Orders</h5>
-                    {%for order in orders%}
-                    <ul>Order Id: {{order.id}}</ul>
-                    {%endfor%}
-                </div>
-                <div class="see">
-                    <div class="last">
-                        <a class="seemore" id="see"href="{%url 'main:order' %}">See More</a>
-                    </div>
-                </div>
+            <div class="redirect">
+                <form action="{% url 'main:order' %}">
+                    <button class="order" type="submit">
+
+                        <h3>Orders</h3>
+                        <h1 class="count">{{count}}</h1>
+
+                    </button>
+                </form>
             </div>
+            <div class="redirect" id="redirect">
+                <form action="{% url 'main:category' %}">
+                    <button class="category">
 
-            <div class="category">
-                <div class="contain">
-                    <h5>Category</h5>
-                    {%for category in categories%}
-                    <ul>- {{category.name}}</ul>
-                    {%endfor%}
-                </div>
-                <div class="see">
-                    <div class="last">
-                        <a class="seemore" id="see"href="{%url 'main:category' %}">See More</a>
-                    </div>
-                </div>
+                        <h3>Category</h3>
+                        <h1 class="count"> {{count_category}}</h1>
 
+                    </button>
+                </form>
             </div>
 
 
@@ -67,7 +58,7 @@
 
                     <div class="name">
 
-                        <ul>Name: {{product.name}}</ul>
+                        <ul id="name">Name: {{product.name}}</ul>
 
                         <div class="buttongrp">
 

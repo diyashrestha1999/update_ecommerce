@@ -1,3 +1,4 @@
+from unicodedata import category
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
@@ -304,7 +305,15 @@ def deleteShop(request, id):
     return HttpResponseRedirect(reverse('main:shoplist'))
 
 def viewDashboard(request):
+    value=Order.objects.all()
+    obj=value.count()
+
+    value=Category.objects.all()
+    category=value.count()
+
     context = {
+        "count":obj,
+        "count_category":category,
         "orders": Order.objects.all(),
         "products":Product.objects.all(),
         "categories":Category.objects.all()
