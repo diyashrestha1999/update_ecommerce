@@ -180,8 +180,8 @@ div {
  .order{
   
   width:100%;
-  height: 100%;
-  border-radius: 0px;
+  height: 98%;
+  border-radius:0 0 10px 10px;
   border: none;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.2s;
@@ -197,7 +197,7 @@ div {
  .category{
   border: none;
   transition: 0.2s;
-  margin-top: 90px;
+  border-radius: 10px 10px 0px 0px;
   width: 100%;
   height: 100%;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -224,4 +224,10 @@ div {
   width:100%;
   height: 50%;
   display: block;
+  
  }
+.form{
+  width:100%;
+  height:100%;
+  
+}

@@ -11,19 +11,9 @@
     </div>
 
     <div class="div2">
-        <!-- <div class="div8"> -->
-        <!-- {%for order in orders%}
-        <div class="card">
-            <ul style="flex-grow: 1;"> ID:{{order.id}}---- Order Date: {{order.order_date}}</ul>
-            <a id="adda" class="button" href="{%url 'main:order-detail' order.id%}">View Detail</a>
-        </div>
-    
-        {%endfor%} -->
-        <!-- </div> -->
-
         <div class="div3">
             <div class="redirect">
-                <form action="{% url 'main:order' %}">
+                <form  class= "form"action="{% url 'main:order' %}">
                     <button class="order" type="submit">
 
                         <h3>Orders</h3>
@@ -33,7 +23,7 @@
                 </form>
             </div>
             <div class="redirect" id="redirect">
-                <form action="{% url 'main:category' %}">
+                <form class= "form" action="{% url 'main:category' %}">
                     <button class="category">
 
                         <h3>Category</h3>
