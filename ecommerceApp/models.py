@@ -12,7 +12,7 @@ class Vendor(models.Model):
     email=models.EmailField()
     
     def __str__(self):
-        return f"Name: {self.name}, Number: {self.number}"
+        return f"  Name: {self.name}, Number: {self.number}"
     
 class Shop(models.Model):
     name=models.CharField(max_length=50)

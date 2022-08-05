@@ -1,10 +1,42 @@
-from unicodedata import category
+
+from rest_framework import viewsets
+from .serializer import *
+from .models import Vendor,Shop,Product,Customer,Admin,UserType,Order,OrderDetail
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django import forms
 from .models import Category, Customer, OrderDetail, Product, Vendor,UserType, Shop, Order
 # Create your views here.
+
+class VendorList(viewsets.ModelViewSet):
+    queryset=Vendor.objects.all()
+    serializer_class=VendorSerializer
+
+
+class CustomerList(viewsets.ModelViewSet):
+    queryset=Customer.objects.all()
+    serializer_class=CustomerSerializer
+
+
+class ShopList(viewsets.ModelViewSet):
+    queryset=Shop.objects.all()
+    serializer_class=ShopSerializer
+
+class CategoryList(viewsets.ModelViewSet):
+    queryset=Category.objects.all()
+    serializer_class=CategorySerializer
+
+class ProductList(viewsets.ModelViewSet):
+    queryset=Product.objects.all()
+    serializer_class=ProductSerializer
+    
+class OrderList(viewsets.ModelViewSet):
+    queryset=Order.objects.all()
+    serializer_class=OrderSerializer
+    
+    
+
 class VendorForm(forms.Form):
     vendor_name=forms.CharField(label='Vendor Name:',max_length=50)
     vendor_number=forms.IntegerField(label='Vendor Number')

@@ -1,8 +1,19 @@
-from django.urls import path
+from django.urls import path,include
 from . import views
+from rest_framework import routers
+
+
+router=routers.DefaultRouter()
+router.register(r'vendor',views.VendorList)
+router.register(r'customer',views.CustomerList)
+router.register(r'shop',views.ShopList)
+router.register(r'category',views.CategoryList)
+router.register(r'Product',views.ProductList)
+router.register(r'Order',views.OrderList)
 
 app_name="main"
 urlpatterns = [
+    path('api/',include(router.urls)),
     path('vendorprofile/<int:id>',views.vendor,name="vendor-profile"),
     path('vendorlist/',views.displayVendor,name="displayVendor"),
     path('updatevendor/<int:id>',views.updateVendor,name="update-vendor"),
