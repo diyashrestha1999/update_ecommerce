@@ -31,7 +31,8 @@ class Product(models.Model):
     description=models.CharField(max_length=1000)
     category=models.ForeignKey(Category,on_delete=models.CASCADE, related_name="category_name")
     shop=models.ManyToManyField(Shop, related_name="shop_name")
-    
+    price=models.FloatField()
+
     @property
     def shop_detail(self):
         return list(self.shop.values_list("name","owner__name"))
@@ -73,9 +74,13 @@ class Order(models.Model):
         return f"Order ID:{self.id} Ordered Date:{self.order_date}, Pricing: {self.pricing}, Deliver Date: {self.deliver_date}, Ordered by:{self.customer}"
     
 class OrderDetail(models.Model):
-    product=models.ForeignKey(Product,on_delete=models.CASCADE)
+    product=models.ForeignKey(Product,on_delete=models.CASCADE,related_name='orders')
     order=models.ForeignKey(Order,on_delete=models.CASCADE)
-    
+    quantity = models.IntegerField(default=0)
+
+    class Meta:
+        unique_together = ('order', 'product')
+
     def __str__(self):
         return f"Product Id: {self.product}, Order Id: {self.order}"
    

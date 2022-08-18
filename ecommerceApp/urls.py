@@ -8,8 +8,9 @@ router.register(r'vendor',views.VendorList)
 router.register(r'customer',views.CustomerList)
 router.register(r'shop',views.ShopList)
 router.register(r'category',views.CategoryList)
-router.register(r'Product',views.ProductList)
-router.register(r'Order',views.OrderList)
+router.register(r'product',views.ProductList)
+router.register(r'order',views.OrderList)
+router.register(r'orderDetail',views.OrderDetailList)
 
 app_name="main"
 urlpatterns = [

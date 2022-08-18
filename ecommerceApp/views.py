@@ -1,12 +1,12 @@
 
 from rest_framework import viewsets
-from .serializer import *
+from .serializer import * 
 from .models import Vendor,Shop,Product,Customer,Admin,UserType,Order,OrderDetail
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django import forms
-from .models import Category, Customer, OrderDetail, Product, Vendor,UserType, Shop, Order
+from .models import Category, Customer, OrderDetail, Product, Vendor,UserType, Shop, Order, OrderDetail
 # Create your views here.
 
 class VendorList(viewsets.ModelViewSet):
@@ -35,6 +35,9 @@ class OrderList(viewsets.ModelViewSet):
     queryset=Order.objects.all()
     serializer_class=OrderSerializer
     
+class OrderDetailList(viewsets.ModelViewSet):
+    queryset=OrderDetail.objects.all()
+    serializer_class=OrderDetailSerializer
     
 
 class VendorForm(forms.Form):

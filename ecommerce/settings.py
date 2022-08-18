@@ -39,8 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ecommerceApp',
     'django_extensions',
-     'rest_framework',   
-     'corsheaders', 
+    'rest_framework',   
+    'corsheaders', 
 ]
 
 MIDDLEWARE = [
@@ -129,8 +129,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
-CORS_ALLOWED_ORIGINS = [
+# CORS_ALLOWED_ORIGINS = [
 
-"http://localhost:8080",
+# "http://localhost:8080",
 
-]
+# ]
+
+CORS_ALLOW_ALL_ORIGINS = True
