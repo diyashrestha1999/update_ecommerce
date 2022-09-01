@@ -29,7 +29,7 @@ class Category(models.Model):
 class Product(models.Model):
     name=models.CharField(max_length=50)
     description=models.CharField(max_length=1000)
-    category=models.ForeignKey(Category,on_delete=models.CASCADE, related_name="category_name")
+    category=models.ForeignKey(Category,on_delete=models.CASCADE, related_name="products")
     shop=models.ManyToManyField(Shop, related_name="shop_name")
     price=models.FloatField()
 

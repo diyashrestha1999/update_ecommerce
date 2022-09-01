@@ -1,4 +1,4 @@
-from csv import field_size_limit
+
 from .models import *
 
 from rest_framework import serializers
@@ -18,6 +18,13 @@ class ShopSerializer(serializers.ModelSerializer):
     class Meta:
         model= Shop
         fields= '__all__'
+
+    def get_fields(self):
+        fields= super().get_fields()
+        if self.context['request'].method=='GET':
+            fields['owner'] = VendorSerializer()
+
+        return fields
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
@@ -62,3 +69,20 @@ class OrderDetailSerializer(serializers.ModelSerializer):
 
         return fields
 
+
+
+class ProductInCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Product
+        fields= '__all__'
+
+    def get_fields(self):
+        fields= super().get_fields()
+        if self.context['request'].method=='GET':
+            fields['category'] = CategorySerializer()
+            
+
+        return fields
+
+   
+    

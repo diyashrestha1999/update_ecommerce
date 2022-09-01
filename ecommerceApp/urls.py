@@ -11,6 +11,7 @@ router.register(r'category',views.CategoryList)
 router.register(r'product',views.ProductList)
 router.register(r'order',views.OrderList)
 router.register(r'orderDetail',views.OrderDetailList)
+router.register(r'Productincategory',views.ProductInCategory)
 
 app_name="main"
 urlpatterns = [

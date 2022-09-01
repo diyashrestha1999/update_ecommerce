@@ -4,9 +4,12 @@ from .serializer import *
 from .models import Vendor,Shop,Product,Customer,Admin,UserType,Order,OrderDetail
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django import forms
 from .models import Category, Customer, OrderDetail, Product, Vendor,UserType, Shop, Order, OrderDetail
+from rest_framework.response import Response
+from rest_framework import status
+
 # Create your views here.
 
 class VendorList(viewsets.ModelViewSet):
@@ -39,6 +42,22 @@ class OrderDetailList(viewsets.ModelViewSet):
     queryset=OrderDetail.objects.all()
     serializer_class=OrderDetailSerializer
     
+class ProductInCategory(viewsets.ModelViewSet):
+    queryset=Product.objects.all()
+    serializer_class=ProductInCategorySerializer
+
+    def get_queryset(self):
+    
+        queryset = Product.objects.all()
+        category = self.request.query_params.get('category')
+     
+        try:
+            queryset = queryset.filter(category=category)
+        except ValueError:
+            print("invalid number")
+        # queryset = get_object_or_404(Product, category__id=category)
+        return queryset
+        
 
 class VendorForm(forms.Form):
     vendor_name=forms.CharField(label='Vendor Name:',max_length=50)
@@ -47,11 +66,11 @@ class VendorForm(forms.Form):
     vendor_email=forms.EmailField(label="Email")
     vendor_password = forms.CharField(label="Password",widget=forms.PasswordInput)    
 
-
+        
 class CustomerForm(forms.Form):
     customer_name=forms.CharField(label="Name:", max_length=50)
     customer_username=forms.CharField(label="Username:", max_length=50)
-    customer_email=forms.EmailField(label="Email")
+    customer_email=forms.EmailField(label="Email")      
     customer_password = forms.CharField(label="Password",widget=forms.PasswordInput)    
 
 def index(request):
