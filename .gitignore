@@ -8,4 +8,5 @@ __pycache__/
 ##
 .venv/
 venv/
+ecomdashboard/
 db.sqlite3
