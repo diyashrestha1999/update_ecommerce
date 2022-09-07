@@ -1,4 +1,6 @@
 
+from dataclasses import fields
+from operator import truediv
 from .models import *
 
 from rest_framework import serializers
@@ -22,6 +24,7 @@ class ShopSerializer(serializers.ModelSerializer):
     def get_fields(self):
         fields= super().get_fields()
         if self.context['request'].method=='GET':
+            # import ipdb; ipdb.set_trace();
             fields['owner'] = VendorSerializer()
 
         return fields
@@ -84,5 +87,17 @@ class ProductInCategorySerializer(serializers.ModelSerializer):
 
         return fields
 
-   
+class ProductInShopSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Product
+        fields='__all__'   
+
+    def get_fields(self):
+        fields=super().get_fields()
+        if self.context['request'].method=='GET':
+            fields['shop']=ShopSerializer(many=True)
+
+        return fields
+
+        
     

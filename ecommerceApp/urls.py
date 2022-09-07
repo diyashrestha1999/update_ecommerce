@@ -10,9 +10,14 @@ router.register(r'shop',views.ShopList)
 router.register(r'category',views.CategoryList)
 router.register(r'product',views.ProductList)
 router.register(r'order',views.OrderList)
-router.register(r'orderDetail',views.OrderDetailList)
-router.register(r'Productincategory',views.ProductInCategory)
+router.register(r'order-detail',views.OrderDetailList)
+router.register(r'product-in-category',views.ProductInCategory)
+router.register(r'product-in-shop',views.ProductInShop)
 
+
+
+
+# for django template
 app_name="main"
 urlpatterns = [
     path('api/',include(router.urls)),
