@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'ecommerceApp',
     'django_extensions',
     'rest_framework',   
+    'django_filters',
     'corsheaders', 
 ]
 
@@ -86,7 +87,9 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators

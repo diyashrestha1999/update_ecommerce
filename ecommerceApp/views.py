@@ -1,4 +1,5 @@
-from rest_framework import viewsets
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import viewsets, filters
 from .serializer import *
 from .models import Vendor, Shop, Product, Customer, Admin, UserType, Order, OrderDetail
 from django.urls import reverse
@@ -25,11 +26,20 @@ from rest_framework import status
 class VendorList(viewsets.ModelViewSet):
     queryset = Vendor.objects.all()
     serializer_class = VendorSerializer
+    filter_backends = [DjangoFilterBackend,filters.SearchFilter]
+    filterset_fields = ['name']
+    search_fields = ['name']
+
 
 
 class CustomerList(viewsets.ModelViewSet):
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializer
+    filter_backends = [DjangoFilterBackend,filters.SearchFilter]
+    filterset_fields = ['name']
+    search_fields = ['name']
+
+
 
 
 class ShopList(viewsets.ModelViewSet):
@@ -45,16 +55,20 @@ class CategoryList(viewsets.ModelViewSet):
 class ProductList(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-
+    filter_backends = [DjangoFilterBackend,filters.SearchFilter]
+    filterset_fields = ['name']
+    search_fields = ['name']
 
 class OrderList(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
+   
 
 
 class OrderDetailList(viewsets.ModelViewSet):
     queryset = OrderDetail.objects.all()
     serializer_class = OrderDetailSerializer
+
 
 
 class ProductInCategory(viewsets.ModelViewSet):
